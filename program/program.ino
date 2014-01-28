@@ -25,18 +25,28 @@ void setup() {
 }
 
 void loop() {
+  sensorRead();
+  calculateAngle();
+  writePower();
+  
+  delay(100);
+}
+
+void sensorRead() {
   for (int i = 0; i<dits; i++) {
       valorSensor[i] = analogRead(sensor[i]);
   }
-  
+}
+
+void calculateAngle() {
   for (int i = 0; i<dits; i++) {
     angleServo[i] = map(valorSensor[i], lecturaMin, lecturaMax, angleMin, angleMax);
   }
-  
+}
+
+void writePower() {
   for (int i = 0; i<dits; i++) {
     servoMotor[i].write(angleServo[i]);
     delay(15);
   }
-  
-  delay(100); 
 }
