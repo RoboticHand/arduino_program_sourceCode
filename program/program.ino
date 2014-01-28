@@ -1,3 +1,14 @@
+/* Fingers (sensors, servos, readings) are defined on arrays 
+ * Each array has as positions as finguers (5)
+ * When i = 0 => Thumb
+ *      i = 1 => Index
+ *      i = 2 => Middle
+ *      i = 3 => Ring
+ *      i = 4 => Pinky
+ * The sensor of value i is the same as servo with i value <=> sensor[Thumb] = servoMotor[Thumb], ...
+ *
+ */
+
 #include <Servo.h>
 
 const byte fingers = 5;
