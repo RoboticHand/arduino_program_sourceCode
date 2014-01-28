@@ -40,7 +40,13 @@ void sensorRead() {
 
 void calculateAngle() {
   for (int i = 0; i<fingers; i++) {
-    servoAngle[i] = map(sensorValue[i], readingMin, readingMax, angleMin, angleMax);
+    int angle = map(sensorValue[i], readingMin, readingMax, angleMin, angleMax);
+    
+    // HACK: "Parkinson Fix"
+    int angleDiference = angle - servoAngle[i];
+    if (angleDiference < 10 || angleDiference > 10) {
+      servoAngle[i] = angle;
+    }
   }
 }
 
