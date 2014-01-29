@@ -44,6 +44,8 @@ void loop() {
   
   for (int i = 0; i<fingers; i++)  
     writePower(i);
+    
+  delay(100);
 }
 
 void sensorRead(int i) {
