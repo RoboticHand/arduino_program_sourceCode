@@ -36,34 +36,28 @@ void setup() {
 }
 
 void loop() {
-  sensorRead();
-  calculateAngle();
-  writePower();
-  
-  delay(100);
-}
-
-void sensorRead() {
   for (int i = 0; i<fingers; i++) {
-      sensorValue[i] = analogRead(sensor[i]);
+    sensorRead(i);
+    calculateAngle(i);
+    writePower(i);
   }
 }
 
-void calculateAngle() {
-  for (int i = 0; i<fingers; i++) {
-    int angle = map(sensorValue[i], readingMin, readingMax, angleMin, angleMax);
+void sensorRead(int i) {
+  sensorValue[i] = analogRead(sensor[i]);
+}
+
+void calculateAngle(int i) {
+  int angle = map(sensorValue[i], readingMin, readingMax, angleMin, angleMax);
     
-    // HACK: "Parkinson Fix"
-    int angleDiference = angle - servoAngle[i];
-    if (angleDiference < 10 || angleDiference > 10) {
+  // HACK: "Parkinson Fix"
+  int angleDiference = angle - servoAngle[i];
+  if (angleDiference < 10 || angleDiference > 10) {
       servoAngle[i] = angle;
-    }
   }
 }
 
-void writePower() {
-  for (int i = 0; i<fingers; i++) {
-    servoMotor[i].write(servoAngle[i]);
-    delay(15);
-  }
+void writePower(int i) {
+  servoMotor[i].write(servoAngle[i]);
+  delay(15);
 }
