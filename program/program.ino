@@ -36,11 +36,14 @@ void setup() {
 }
 
 void loop() {
-  for (int i = 0; i<fingers; i++) {
+  for (int i = 0; i<fingers; i++)
     sensorRead(i);
+    
+  for (int i = 0; i<fingers; i++)
     calculateAngle(i);
+  
+  for (int i = 0; i<fingers; i++)  
     writePower(i);
-  }
 }
 
 void sensorRead(int i) {
