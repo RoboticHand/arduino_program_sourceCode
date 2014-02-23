@@ -57,7 +57,7 @@ void calculateAngle(int i) {
     
   // HACK: "Parkinson Fix"
   int angleDiference = angle - servoAngle[i];
-  if (angleDiference < 10 || angleDiference > 10) {
+  if (angleDiference < -10 || angleDiference > 10) {
       servoAngle[i] = angle;
   }
 }
